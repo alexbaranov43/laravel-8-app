@@ -16,6 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+                @if(auth()->user())
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <a href="/search">Users</a>
+                </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
