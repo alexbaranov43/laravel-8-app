@@ -17,9 +17,14 @@
                     </x-jet-nav-link>
                 </div>
                 @if(auth()->user())
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <a href="/search">Users</a>
-                </div>
+                <x-jet-nav-link href="/search">
+                        {{ __('Users') }}
+                    </x-jet-nav-link>
+                @endif
+                @if(auth()->user()->role_id == 2)
+                <x-jet-nav-link href="/manage">
+                        {{ __('Manage Users') }}
+                    </x-jet-nav-link>
                 @endif
             </div>
 

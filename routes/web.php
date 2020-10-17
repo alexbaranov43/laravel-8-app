@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +24,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/store', [ImageController::class, 'store']);
 Route::get('/search', [SearchController::class, 'index']);
+Route::get('/user/{id}', [UserController::class, 'show'])->where('id', '[0-9]+');

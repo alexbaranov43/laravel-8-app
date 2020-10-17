@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ImageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('users', [UserController::class, 'index']);
+Route::get('users/{id}', [UserController::class, 'show'])->where('id', '[0-9]+');
+Route::get('images/{id}', [ImageController::class, 'show'])->where('id', '[0-9]+');
 Route::delete('student/{id}/delete', [UserController::class, 'destroy']);

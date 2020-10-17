@@ -1,4 +1,4 @@
-<div>
+<div style="align-content: center">
     {{-- Be like water. --}}
     <input type="text" wire:model="searchTerm" />
 
