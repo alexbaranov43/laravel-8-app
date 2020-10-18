@@ -26,4 +26,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/store', [ImageController::class, 'store']);
 Route::get('/search', [SearchController::class, 'index']);
+Route::get('/manage/users', [UserController::class, 'manageIndex'])->where('id', '[0-9]+');
+Route::get('/manage/user/{id}/edit', [UserController::class, 'edit'])->where('id', '[0-9]+');
 Route::get('/user/{id}', [UserController::class, 'show'])->where('id', '[0-9]+');

@@ -19,6 +19,21 @@ class UserController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function manageIndex()
+    {
+        //
+        if (auth()->user()->id() !== 2) {
+            abort(401);
+        }
+
+        return view('manage.index');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -26,7 +41,11 @@ class UserController extends Controller
     public function create()
     {
         //
+        if (auth()->user()->id() !== 2) {
+            abort(401);
+        }
 
+        return view('manage.create');
     }
 
     /**
@@ -66,6 +85,18 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        if (auth()->user()->id() !== 2) {
+            abort(401);
+        }
+
+        if (empty(User::where('id', $id)->first())) {
+            abort(404);
+        } 
+
+        $user = User::select('*')->where('id', $id)->first();
+
+        return view('manage.edit', compact('user'));        
+        
     }
 
     /**

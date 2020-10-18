@@ -39,13 +39,11 @@ class UserController extends Controller
             abort(403);
         }
 
-        $data = $request->data;
-
         $user = new User([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'role_id' => $data['role_id']
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password')),
+            'role_id' => $request->get('role_id')
         ]);
 
         $user->save();
@@ -62,9 +60,9 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        // if (!auth()->user()) {
-        //     abort(403);
-        // }
+        if (!auth()->user()) {
+            abort(403);
+        }
 
         if (User::where('users.id', $id)->exists()) {
             $user = User::select('users.id', 'users.name', 'users.email', 'r.role')
@@ -85,6 +83,31 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (auth()->user()->id() !== 2) {
+            abort(401);
+        }
+
+        $user_name = $request->get('name');
+        $email = $request->get('email');
+        $role_id = $request->get('role_id');
+
+        if (User::where('id', $id)->exists()) {
+            $user = User::select('*', 'r.name')
+            ->join('roles as r', 'r.id', '=', 'users.role_id')
+            ->where('id', $id)
+            ->first();
+
+            $user->name = $user_name;
+            $user->email = $email;
+            $user->role_id = $role_id;
+            $user->save();
+            
+            return new UserResource($user);
+        } else {
+            abort(404);
+        }
+
+
     }
 
     /**

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\Http\Resources\ImageResource;
 use App\Http\Resources\ImageCollection;
 use Illuminate\Support\Facades\Auth;
+use stdClass;
 
 class ImageController extends Controller
 {
@@ -29,15 +31,24 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->data;
+        $image_name = $request->get('image');
+        $user_id = $request->get('user_id');
+        
+        if (!is_numeric($user_id) && $user_id !== Auth::id()) {
+            abort(403);
+        }
         $image = new Image([
-            'image' => $data['image'],
-            'user_id' => Auth::id()
+            'image' =>  $request->get('image'),
+            'user_id' => $request->get('user_id')
         ]);
-
         $image->save();
 
-        return new ImageResource('image');
+        $data = new stdClass();
+        $data->id = $image->id;
+        $data->image = $image->image;
+        $data->user_id = $image->user_id;
+
+        return new ImageResource($data);
     }
 
     /**

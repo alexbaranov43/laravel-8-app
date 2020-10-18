@@ -20,6 +20,10 @@
                 <x-jet-nav-link href="/search">
                         {{ __('Users') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="/store">
+                        {{ __('Store Images') }}
+                    </x-jet-nav-link>    
                 @endif
                 @if(auth()->user()->role_id == 2)
                 <x-jet-nav-link href="/manage">
