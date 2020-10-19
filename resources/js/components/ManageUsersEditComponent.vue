@@ -8,11 +8,11 @@
             <input type="hidden" class="form-control" id="user_id" name="user_id" v-model="fields.user_id">
             <label for="name">Name</label>
             <br>
-            <input type="text" v-model="fields.name">
+            <input type="text" v-model="fields.name" required>
             <br><br>
             <label for="Select">User Role</label>
             <br>
-            <select v-model="fields.role_id">
+            <select v-model="fields.role_id" required>
                 <option value="1">Member</option>
                 <option value="2">Admin</option>
             </select>

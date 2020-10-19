@@ -33,6 +33,18 @@
                     {{ __('Create Users') }}
                 </x-jet-nav-link>
                 @endif
+                @if(auth()->user())
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-jet-nav-link href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    this.closest('form').submit();">
+                    {{ __('Logout') }}
+                    </x-jet-nav-link>
+                </form>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
@@ -153,6 +165,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
+            
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
@@ -163,17 +176,6 @@
                         {{ __('API Tokens') }}
                     </x-jet-responsive-nav-link>
                 @endif
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                        {{ __('Logout') }}
-                    </x-jet-responsive-nav-link>
-                </form>
 
                 <!-- Team Management -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())

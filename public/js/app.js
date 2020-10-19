@@ -20939,7 +20939,7 @@ var render = function() {
                 expression: "fields.name"
               }
             ],
-            attrs: { type: "text" },
+            attrs: { type: "text", required: "" },
             domProps: { value: _vm.fields.name },
             on: {
               input: function($event) {
@@ -20969,6 +20969,7 @@ var render = function() {
                   expression: "fields.role_id"
                 }
               ],
+              attrs: { required: "" },
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter

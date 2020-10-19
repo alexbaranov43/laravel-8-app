@@ -35,7 +35,7 @@ class ImageController extends Controller
         $user_id = $request->get('user_id');
         
         if (!is_numeric($user_id) && $user_id !== Auth::id()) {
-            abort(403);
+            abort(401);
         }
         $image = new Image([
             'image' =>  $request->get('image'),

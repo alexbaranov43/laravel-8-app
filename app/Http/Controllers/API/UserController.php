@@ -35,6 +35,17 @@ class UserController extends Controller
     {
         //
         //  @todo validate data
+        $this->validate($request, [
+            'name' => 'required|max:100',
+            'email' => 'required|max:100',
+            'password' => 'required|max:100',
+            'role_id' => 'required|integer'
+        ]);
+
+        if (User::where('email', '=', $request->get('email'))->first()) {
+            return response()->json('User Email already taken');
+        }
+
         $user = new User([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
@@ -82,11 +93,17 @@ class UserController extends Controller
 
         $user_name = $request->get('name');
         $role_id = $request->get('role_id');
-
+        if ($role_id !== 1 || $role_id !== 2) {
+            abort(401);
+        }
         if (User::where('id', $id)->exists()) {
             $user = User::select('*')
             ->where('id', $id)
             ->first();
+
+            if ($user->name == $user_name || is_null($user_name) || $user_name == '') {
+                abort(401);
+            }
 
             $user->name = $user_name;
             $user->role_id = $role_id;
