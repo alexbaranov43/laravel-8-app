@@ -13,6 +13,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('user-info-component', require('./components/UserInfoComponent.vue').default);
 Vue.component('store-image-component', require('./components/StoreImageComponent.vue').default);
 Vue.component('manage-users-index-component', require('./components/ManageUsersIndexComponent.vue').default);
+Vue.component('manage-users-create-component', require('./components/ManageUsersCreateComponent.vue').default);
 Vue.component('manage-users-edit-component', require('./components/ManageUsersEditComponent.vue').default);
 Vue.component("flash", require("./components/Flash.vue").default);
 

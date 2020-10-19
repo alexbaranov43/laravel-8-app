@@ -2,5 +2,5 @@
 
 @section('content')
 <h1>Manage Users</h1>
-<manage-user-index-component></manage-user-index-component>
+<manage-users-index-component></manage-users-index-component>
 @endsection

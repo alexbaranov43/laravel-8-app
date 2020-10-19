@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Edit User</h1>
-<manage-user-edit-component></manage-user-edit-component>
+<manage-users-edit-component :user="{{$user}}"></manage-users-edit-component>
 @endsection

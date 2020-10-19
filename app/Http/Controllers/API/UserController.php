@@ -34,11 +34,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        //if user not admin abort
-        if (auth()->user()->role_id !== 2) {
-            abort(403);
-        }
-
+        //  @todo validate data
         $user = new User([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
@@ -83,22 +79,16 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        if (auth()->user()->id() !== 2) {
-            abort(401);
-        }
 
         $user_name = $request->get('name');
-        $email = $request->get('email');
         $role_id = $request->get('role_id');
 
         if (User::where('id', $id)->exists()) {
-            $user = User::select('*', 'r.name')
-            ->join('roles as r', 'r.id', '=', 'users.role_id')
+            $user = User::select('*')
             ->where('id', $id)
             ->first();
 
             $user->name = $user_name;
-            $user->email = $email;
             $user->role_id = $role_id;
             $user->save();
             
@@ -119,12 +109,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        if (!auth()->user()->role_id() !== 2) {
-            abort(403);
-        }
-
         if (User::where('id', $id)->exists()) {
-            $user::find($id);
+            $user = User::find($id);
             $user->delete();
 
             return response()->json([

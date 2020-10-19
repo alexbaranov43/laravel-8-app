@@ -8,9 +8,9 @@
           <div class="form-group">
               <label for="image">Store Image</label>
               <!-- Hidden User ID Input -->
-              <input type="hidden" class="form-control" id="user_id" name="user_id" rows="5" v-model="fields.user_id">
+              <input type="hidden" class="form-control" id="user_id" name="user_id" v-model="fields.user_id">
               <!-- image Text Input -->
-              <textarea class="form-control" id="image" name="image" rows="5" v-model="fields.image" required></textarea>
+              <input type="text" class="form-control" id="image" name="image" v-model="fields.image" required />
               <div v-if="errors && errors.image" class="text-danger">{{ errors.image[0] }}</div>
           </div>
           <button type="submit" class="btn btn-primary">Store</button>

@@ -26,9 +26,12 @@
                     </x-jet-nav-link>    
                 @endif
                 @if(auth()->user()->role_id == 2)
-                <x-jet-nav-link href="/manage">
+                <x-jet-nav-link href="/manage/users">
                         {{ __('Manage Users') }}
                     </x-jet-nav-link>
+                <x-jet-nav-link href="/manage/users/create">
+                    {{ __('Create Users') }}
+                </x-jet-nav-link>
                 @endif
             </div>
 

@@ -24,5 +24,5 @@ Route::get('users/{id}', [UserController::class, 'show'])->where('id', '[0-9]+')
 Route::get('images/{id}', [ImageController::class, 'show'])->where('id', '[0-9]+');
 Route::patch('manage/user/{id}', [UserController::class, 'update'])->where('id', '[0-9]+');
 Route::post('store/image', [ImageController::class, 'store']);
-Route::post('manage/user/store', [UserCotntroller::class, 'store']);
+Route::post('manage/user/store', [UserController::class, 'store']);
 Route::delete('manage/user/{id}/delete', [UserController::class, 'destroy'])->where('id', '[0-9]+');

@@ -26,7 +26,7 @@ class UserController extends Controller
     public function manageIndex()
     {
         //
-        if (auth()->user()->id() !== 2) {
+        if (auth()->user()->role_id !== 2) {
             abort(401);
         }
 
@@ -41,7 +41,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        if (auth()->user()->id() !== 2) {
+        if (auth()->user()->role_id !== 2) {
             abort(401);
         }
 
@@ -85,7 +85,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        if (auth()->user()->id() !== 2) {
+        if (auth()->user()->role_id !== 2) {
             abort(401);
         }
 

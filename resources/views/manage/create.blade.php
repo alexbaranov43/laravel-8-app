@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Edit User</h1>
-<manage-user-create-component></manage-user-create-component>
+<h1>Create User</h1>
+<manage-users-create-component></manage-users-create-component>
 @endsection

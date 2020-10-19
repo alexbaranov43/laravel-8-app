@@ -6,7 +6,7 @@
         @foreach($users as $user)
             <li>
                 <p>
-                    {{$user->name}}
+                    <a href="/user/{{$user->id}}">{{$user->name}}</a>
                 </p>
             </li>
         @endforeach
